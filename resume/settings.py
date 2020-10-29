@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
 from decouple import config
 import dj_database_url
 
@@ -28,7 +29,7 @@ SECRET_KEY = '(7q*5bg5ik7j8!$7s591nq^5^0%t13d*l@#-_e+ot%@=i*qyu5'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [hanminooresume.herokuapp.com]
+ALLOWED_HOSTS = ['hanminooresume.herokuapp.com']
 
 
 # Application definition
@@ -129,6 +130,6 @@ STATICFILES_DIRS = [
 
 #  Add configuration for static files storage using whitenoise
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
+django_heroku.settings(locals())
 prod_db  =  dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
